@@ -1,98 +1,62 @@
-/*
-https://www.acmicpc.net/problem/14503
-巩力
-肺嚎 没家扁啊 林绢脸阑 锭, 没家窍绰 康开狼 俺荐甫 备窍绰 橇肺弊伐阑 累己窍矫坷.
-
-肺嚎 没家扁啊 乐绰 厘家绰 N】M 农扁狼 流荤阿屈栏肺 唱鸥尘 荐 乐栏哥, 1】1农扁狼 沥荤阿屈 沫栏肺 唱穿绢廉 乐促.
-阿阿狼 沫篮 寒 肚绰 后 沫捞促. 没家扁绰 官扼焊绰 规氢捞 乐栏哥, 捞 规氢篮 悼, 辑, 巢, 合吝 窍唱捞促.
-瘤档狼 阿 沫篮 (r, c)肺 唱鸥尘 荐 乐绊, r篮 合率栏肺何磐 冻绢柳 沫狼 俺荐, c绰 辑率栏肺 何磐 冻绢柳 沫狼 俺荐捞促.
-
-肺嚎 没家扁绰 促澜苞 鞍捞 累悼茄促.
-
-泅犁 困摹甫 没家茄促.
-泅犁 困摹俊辑 泅犁 规氢阑 扁霖栏肺 哭率规氢何磐 瞒肥措肺 沤祸阑 柳青茄促.
-哭率 规氢俊 酒流 没家窍瘤 臼篮 傍埃捞 粮犁茄促搁, 弊 规氢栏肺 雀傈茄 促澜 茄 沫阑 傈柳窍绊 1锅何磐 柳青茄促.
-哭率 规氢俊 没家且 傍埃捞 绝促搁, 弊 规氢栏肺 雀傈窍绊 2锅栏肺 倒酒埃促.
-匙 规氢 葛滴 没家啊 捞固 登绢乐芭唱 寒牢 版快俊绰, 官扼焊绰 规氢阑 蜡瘤茄 盲肺 茄 沫 饶柳阑 窍绊 2锅栏肺 倒酒埃促.
-匙 规氢 葛滴 没家啊 捞固 登绢乐芭唱 寒捞搁辑, 第率 规氢捞 寒捞扼 饶柳档 且 荐 绝绰 版快俊绰 累悼阑 肛冕促.
-肺嚎 没家扁绰 捞固 没家登绢乐绰 沫阑 肚 没家窍瘤 臼栏哥, 寒阑 烹苞且 荐 绝促.
-
-涝仿
-霉掳 临俊 技肺 农扁 N苞 啊肺 农扁 M捞 林绢柳促. (3 ÷ N, M ÷ 50)
-
-笛掳 临俊 肺嚎 没家扁啊 乐绰 沫狼 谅钎 (r, c)客 官扼焊绰 规氢 d啊 林绢柳促.
-d啊 0牢 版快俊绰 合率阑, 1牢 版快俊绰 悼率阑, 2牢 版快俊绰 巢率阑, 3牢 版快俊绰 辑率阑 官扼焊绊 乐绰 巴捞促.
-悸掳 临何磐 N俺狼 临俊 厘家狼 惑怕啊 合率何磐 巢率 鉴辑措肺, 阿 临篮 辑率何磐 悼率 鉴辑措肺 林绢柳促. 后 沫篮 0, 寒篮 1肺 林绢柳促. 厘家狼 葛电 寇胞篮 寒捞促.
-
-肺嚎 没家扁啊 乐绰 沫狼 惑怕绰 亲惑 后 沫捞促.
-3 3
-1 1 0
-1 1 1
-1 0 1
-1 1 1
-
-11 10
-7 4 0
-1 1 1 1 1 1 1 1 1 1
-1 0 0 0 0 0 0 0 0 1
-1 0 0 0 1 1 1 1 0 1
-1 0 0 1 1 0 0 0 0 1
-1 0 1 1 0 0 0 0 0 1
-1 0 0 0 0 0 0 0 0 1
-1 0 0 0 0 0 0 1 0 1
-1 0 0 0 0 0 1 1 0 1
-1 0 0 0 0 0 1 1 0 1
-1 0 0 0 0 0 0 0 0 1
-1 1 1 1 1 1 1 1 1 1
-免仿
-肺嚎 没家扁啊 没家窍绰 沫狼 俺荐甫 免仿茄促.
-1
-57
-*/
+//
+// Created by 旯�膦呾嫚 on 2020/02/28.
+//
 #include <bits/stdc++.h>
+
 #define MAXI 51
 using namespace std;
-int arr[MAXI][MAXI] = { 0, };
-int n, m, res = 0;
-int r, c, d;
-int dy[] = { 0,-1,0,1 };
-int dx[] = { -1,0,1,0 };
-bool checkRange(int x, int y) { return x > 0 && x <= n && y > 0 && y <= m; }
-bool flag = false;
-void dfs(int x, int y, int d) {
-	if (!arr[x][y]) {
-		res++;
-		arr[x][y] = 2;
-	}
-	for (int i = d + 1; i < d + 5; i++) {
-		int nextX = x + dx[i % 4];
-		int nextY = y + dy[i % 4];
-		if (checkRange(nextX, nextY))
-			if (!arr[nextX][nextY])
-				dfs(nextX, nextY, i % 4);
-	}
-	int tmpX = x + dx[(d + 2) % 4];
-	int tmpY = y + dy[(d + 2) % 4];
-	if (arr[tmpX][tmpY] == 2)
-		dfs(tmpX, tmpY, d % 4);
-	else if (arr[tmpX][tmpY] == 1 && !flag) {
-		cout << res << "\n";
-		flag = true;
-		return;
-	}
+int N, M, r, c, d, nx, ny, nd, res = 1;
+int arr[MAXI][MAXI];
+int dx[] = {-1, 0, 1, 0};
+int dy[] = {0, 1, 0, -1};
+
+bool checkRange(int x, int y) { return 0 <= x && x < N && 0 <= y && y < M; }
+
+int turn(int dir) {
+    if (dir == 0) return 3;
+    else if (dir == 1) return 0;
+    else if (dir == 2) return 1;
+    else if (dir == 3) return 2;
 }
+
 int main() {
-	std::ios::sync_with_stdio(false);
-	cin.tie(NULL); cout.tie(NULL);
-	cin >> n >> m;
-	cin >> r >> c >> d;
+    cin.tie(NULL);
+    cout.tie(NULL);
+    std::ios::sync_with_stdio(false);
+    cin >> N >> M;
+    cin >> r >> c >> d;
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < M; j++)
+            cin >> arr[i][j];
+    arr[r][c] = -1;
+    while (true) {
+        int cur = d;
+        bool flag = false;
+        int cant = 0;
+        for (int i = 0; i < 4; i++) {
+            nd = turn(d);
+            nx = r + dx[nd], ny = c + dy[nd];
+            if (!arr[nx][ny]) {
+                flag = true;
+                break;
+            } else if (arr[nx][ny] == 1 ||arr[nx][ny] == -1|| !checkRange(nx, ny)) {
+                d = nd;
+                cant++;
+            }
+        }
+        if (flag) {
+            arr[nx][ny] = -1;
+            res++;
+            d = nd;
+        }
+        if (cant == 4) {
+            nx = r - dx[cur], ny = c - dy[cur], d = cur;
+            if (!checkRange(nx, ny) || arr[nx][ny] == 1)
+                break;
+        }
+        r = nx, c = ny;
+    }
+    cout << res << "\n";
 
-	for (int i = 1; i <= n; i++)
-		for (int j = 1; j <= m; j++)
-			cin >> arr[i][j];
-	
-	dfs(r, c, d);
-
-	if(!flag) cout << res << "\n";
-
+    return 0;
 }
