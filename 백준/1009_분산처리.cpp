@@ -1,67 +1,24 @@
-/*
-https://www.acmicpc.net/problem/1009
-╧╝а╕
-юГ©Кюл╢б цж╫е ддг╩ем 10╢К╦╕ ╟║аЖ╟М юж╢ы. ╬Н╢ю Ё╞ юГ©Кюл╢б ╦╧ю╨ ╣╔юлем╦╕ цЁ╦╝гь╬ъ ╣и юоюл ╩Щ╟э╪╜
-╟╒ ддг╩ем©║ 1╧Ь╨нем 10╧Ь╠НаЖюг ╧Ьхё╦╕ ╨н©╘го╟М, 10╢Кюг ддг╩ем╟║ ╢ыю╫╟З ╟╟ю╨ ╧Ф╧Щю╦╥н ╣╔юлем╣Ию╩ цЁ╦╝го╠Б╥н го©╢╢ы.
-1╧Ь ╣╔юлем╢б 1╧Ь ддг╩ем, 2╧Ь ╣╔юлем╢б 2╧Ь ддг╩ем, 3╧Ь ╣╔юлем╢б 3╧Ь ддг╩ем, ... ,
-10╧Ь ╣╔юлем╢б 10╧Ь ддг╩ем, 11╧Ь ╣╔юлем╢б 1╧Ь ддг╩ем, 12╧Ь ╣╔юлем╢б 2╧Ь ддг╩ем, ...
-
-ця ╣╔юлемюг ╟Ё╪Ж╢б гв╩С ab╟Ёюг гЭеб╥н аж╬НаЬ╢ы. юГ©Кюл╢б ╧╝╣Ф ╦╤аЖ╦╥ ╣╔юлем╟║ цЁ╦╝╣и ддг╩емюг ╧Ьхё╟║ ╠ц╠щгьаЁ╢ы. юл╦╕ ╪ЖгЮгьаж╢б га╥н╠в╥╔ю╩ юш╪╨го╤С.
-
-ют╥б
-ют╥бюг ц╧ аы©║╢б ев╫╨ф╝ диюл╫╨юг ╟Ё╪Ж T╟║ аж╬НаЬ╢ы. ╠в ╢ыю╫ аы╨нем ╟╒╟╒юг ев╫╨ф╝ диюл╫╨©║ ╢Кгь а╓╪Ж a©м b╟║ аж╬НаЬ╢ы. (1 ║б a < 100, 1 ║б b < 1,000,000)
-5
-1 6
-3 7
-6 2
-7 100
-9 635
-цБ╥б
-╟╒ ев╫╨ф╝ диюл╫╨©║ ╢Кгь ╦╤аЖ╦╥ ╣╔юлем╟║ цЁ╦╝╣г╢б ддг╩емюг ╧Ьхё╦╕ цБ╥бгя╢ы.
-1
-7
-6
-1
-9
-*/
+//
+// Created by Й╧─Л╒┘Л▀═ on 2020/05/07.
+//
 #include <iostream>
+
 using namespace std;
+
 int main() {
-	std::ios::sync_with_stdio(false);
-	cin.tie(NULL); cout.tie(NULL);
-	int t; cin >> t;
-	while (t--) {
-		int a, b;
-		cin >> a >> b;
-		int tmp = a;
-		for (int j = 0; j < b - 1; j++)
-			a = tmp * a % 10;
-		if (!a) a = 10;
-		cout << a << "\n";
-	}
+    std::ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int t;
+    cin >> t;
+    while (t--) {
+        int a, b;
+        cin >> a >> b;
+        int tmp = a;
+        b = b % 4 + 4;
+        for (int i = 2; i <= b; i++)
+            a = (tmp * a) % 10;
+        if (!a) a = 10;
+        cout << a << "\n";
+    }
 }
-//int a, b;
-//int cal() {
-//	int tmp = a % 10;
-//	if (!tmp) return 10;
-//	else if (b == 1) return a;
-//	else if (a == 1 || a == 5 || a == 6) return a;
-//	else if (a == 4 || a == 9) {
-//		if (b % 2 == 0) return a == 4 ? 6 : 1;
-//		else return a;
-//	}
-//	else {
-//		b %= 4;
-//		if (b) return (int)pow(a, b) % 10;
-//		else return (int)pow(a, 4) % 10;
-//	}
-//}
-//int main() {
-//	std::ios::sync_with_stdio(false);
-//	cin.tie(NULL); cout.tie(NULL);
-//	int t; cin >> t;
-//	while (t--) {
-//		cin >> a >> b;
-//		cout << cal() << "\n";
-//	}
-//}
